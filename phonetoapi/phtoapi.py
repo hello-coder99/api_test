@@ -1,21 +1,36 @@
+#issue : generally it working perfectly on us based phone number
+from flask import Flask,request,render_template
 import requests
-apikey="gualck57akgtm5b0qn3sfogs8trmgs3mgrtgimqvkstgpe2eq9v8dso"
-#url="https://anyapi.io/api/v1/phone/validate?phone_number=%2B12133734253&apiKey="
-url="https://anyapi.io/api/v1/phone/validate?phone_number=%2B12133734253&apiKey="
-url=url+apikey
-"""
-valid
-countryCode
-type
-format
-uri
-"""
-data=requests.get(url)
-result=data.json()
-#print(data.text)
-print("validity :",result["valid"])
-print("countryCode :",result["countryCode"])
-print("Type of :",result["type"])
-print("Format :",result["format"])
-print("Uri :",result["uri"])
+import getcred
 
+app=Flask(__name__)
+def get_data(phone):
+    url=getcred.get_url(phone)
+    url=url+getcred.apikey
+    """
+    valid
+    countryCode
+    type
+    format
+    uri
+    """
+    data=requests.get(url)
+    result=data.json()
+    return result
+@app.route("/",methods=["GET"])
+def phone_validity_check():
+    phone=request.args.get("phone")
+    if not phone:
+        return "/phone=???"
+    result=get_data(phone)
+    return render_template("validity.html",
+                           valid=result["valid"],
+                           countrycode=result["countryCode"],
+                           phtype=result["type"],
+                           Informat=result["format"]["international"],
+                           Nformat=result["format"]["national"],
+                           uri=result["uri"])
+
+
+
+app.run()

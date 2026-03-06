@@ -31,7 +31,7 @@ def current_wheather():
     angle=parser["current"]["wind"]["angle"]
     direction=parser["current"]["wind"]["dir"]
     pre=parser["current"]["precipitation"]
-    return render_template("wheather2.html",
+    return render_template("wheather.html",
                             location=location,
                             icon=icon,
                             wtype=wtype,
@@ -40,4 +40,13 @@ def current_wheather():
                             angle=angle,
                             direction=direction,
                             pre=pre)
+
+@app.errorhandler(404)
+def info_not_found(error):
+    return render_template("404.html"),404
+
+@app.errorhandler(500)
+def server_error(error):
+    return render_template("500.html"),500
+
 app.run()
