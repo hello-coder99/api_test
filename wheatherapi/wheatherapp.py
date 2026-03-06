@@ -5,12 +5,8 @@ import getcred
 
 app=Flask(__name__)
 def data_gen(location):
-    #url=f"https://www.meteosource.com/api/v1/free/point?place_id={location}&sections=all&timezone=UTC&language=en&units=metric&key="
-    #key="03387mh2qcbpvzgs4kio70udiqlf4y5pp0hbjxuy"
     url=getcred.get_url(location)
     key=getcred.get_api_key()
-    print(url)
-    print(key)
 
     url=url+key
 
