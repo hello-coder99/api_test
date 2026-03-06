@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Weather / IP Intelligence</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+}
+
+.header{
+    text-align:center;
+    padding:25px;
+    font-size:40px;
+    font-weight:bold;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+}
+
+.card{
+    width:900px;
+    padding:25px;
+    border-radius:15px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.box{
+    background:rgba(0,0,0,0.35);
+    padding:12px;
+    border-radius:8px;
+}
+
+.label{
+    color:#00ffff;
+    font-weight:bold;
+}
+
+/* flag */
+.flag{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.flag img{
+    width:120px;
+    border-radius:8px;
+    box-shadow:0 0 10px black;
+}
+
+/* map */
+#map{
+    height:350px;
+    margin-top:20px;
+    border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+🌍 IP Intelligence Dashboard
+</div>
+
+<div class="container">
+<div class="card">
+
+<div class="flag">
+<h2>{{country}}</h2>
+<img src="https://flagsapi.com/{{countryCode}}/flat/128.png">
+</div>
+
+<div class="grid">
+
+<div class="box"><span class="label">IP Status:</span> {{status}}</div>
+<div class="box"><span class="label">Query IP:</span> {{query}}</div>
+
+<div class="box"><span class="label">Country Code:</span> {{countryCode}}</div>
+<div class="box"><span class="label">Region:</span> {{region}}</div>
+
+<div class="box"><span class="label">Region Name:</span> {{regionName}}</div>
+<div class="box"><span class="label">City:</span> {{city}}</div>
+
+<div class="box"><span class="label">Zip Code:</span> {{zipcode}}</div>
+<div class="box"><span class="label">ISP:</span> {{isp}}</div>
+
+<div class="box"><span class="label">Organization:</span> {{org}}</div>
+<div class="box"><span class="label">AS Number:</span> {{assure}}</div>
+
+<div class="box"><span class="label">Latitude:</span> {{lat}}</div>
+<div class="box"><span class="label">Longitude:</span> {{lon}}</div>
+
+<div class="box"><span class="label">TimeZone:</span> {{timezone}}</div>
+
+</div>
+
+<div id="map"></div>
+
+</div>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+
+var lat = {{lat}};
+var lon = {{lon}};
+
+var map = L.map('map').setView([lat, lon], 6);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data © OpenStreetMap'
+}).addTo(map);
+
+L.marker([lat, lon]).addTo(map)
+    .bindPopup("Location: " + lat + ", " + lon)
+    .openPopup();
+
+</script>
+
+</body>
+</html>

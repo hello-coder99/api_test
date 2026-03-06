@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Dashboard</title>
+
+    <style>
+
+        body{
+            margin:0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+            color:white;
+            text-align:center;
+        }
+
+        h1{
+            margin-top:40px;
+            font-size:40px;
+            letter-spacing:2px;
+        }
+
+        .container{
+            margin:auto;
+            margin-top:40px;
+            width:60%;
+            background:rgba(255,255,255,0.1);
+            padding:40px;
+            border-radius:15px;
+            backdrop-filter: blur(10px);
+            box-shadow:0 0 25px rgba(0,0,0,0.5);
+        }
+
+        .weather-grid{
+            display:grid;
+            grid-template-columns: repeat(2,1fr);
+            gap:20px;
+            margin-top:20px;
+        }
+
+        .card{
+            background:rgba(255,255,255,0.15);
+            padding:20px;
+            border-radius:12px;
+            transition:0.3s;
+            font-size:18px;
+        }
+
+        .card:hover{
+            transform:scale(1.05);
+            background:rgba(255,255,255,0.25);
+        }
+
+        .label{
+            font-weight:bold;
+            color:#00ffd5;
+        }
+
+        .footer{
+            margin-top:40px;
+            font-size:14px;
+            opacity:0.7;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<h1>🌤 Weather Dashboard</h1>
+<h1>   {{location}} </h1>
+<img src="{{ url_for('static',filename='images/'+icon+'.jpg') }}" height=40px width=40px>
+
+<div class="container">
+
+    <div class="weather-grid">
+
+        <div class="card">
+            <span class="label">Weather Type</span><br>
+            {{wtype}}
+        </div>
+
+        <div class="card">
+            <span class="label">Weather Icon</span><br>
+            {{icon}}
+        </div>
+
+        <div class="card">
+            <span class="label">Temperature</span><br>
+            {{temperature}} °C
+        </div>
+
+        <div class="card">
+            <span class="label">Wind Speed</span><br>
+            {{speed}} km/h
+        </div>
+
+        <div class="card">
+            <span class="label">Wind Angle</span><br>
+            {{angle}}°
+        </div>
+
+        <div class="card">
+            <span class="label">Wind Direction</span><br>
+            {{direction}}
+        </div>
+
+        <div class="card">
+            <span class="label">Precipitation</span><br>
+            {{pre}}
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    Weather Monitoring System
+</div>
+
+</body>
+</html>
