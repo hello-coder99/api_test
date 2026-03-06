@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Phone Number Validation</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg,#0f2027,#2c5364);
+    color:white;
+}
+
+.container{
+    width:650px;
+    margin:auto;
+    margin-top:80px;
+    padding:40px;
+    background:white;
+    color:black;
+    border-radius:12px;
+    box-shadow:0px 0px 25px rgba(0,0,0,0.5);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+/* validation status */
+.status{
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:25px;
+    animation:pulse 1.5s infinite;
+}
+
+/* animation */
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
+}
+
+/* valid / invalid colors */
+.valid{
+    background:#ccffcc;
+    color:#006600;
+}
+
+.invalid{
+    background:#ffcccc;
+    color:#990000;
+}
+
+.row{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    font-size:18px;
+}
+
+.label{
+    font-weight:bold;
+}
+
+.value{
+    float:right;
+}
+
+/* flag style */
+.flag{
+    text-align:center;
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.button{
+    display:block;
+    width:200px;
+    margin:30px auto 0 auto;
+    text-align:center;
+    padding:12px;
+    background:#2c5364;
+    color:white;
+    text-decoration:none;
+    border-radius:6px;
+}
+
+.button:hover{
+    background:black;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📱 Phone Number Validation</h1>
+
+<!-- Country Flag -->
+<div class="flag">
+{{flag}}
+</div>
+
+<!-- Validation Status -->
+<div class="status {% if valid %}valid{% else %}invalid{% endif %}">
+{% if valid %}
+✅ Valid Phone Number
+{% else %}
+❌ Invalid Phone Number
+{% endif %}
+</div>
+
+<div class="row">
+<span class="label">Country Code</span>
+<span class="value">{{countrycode}}</span>
+</div>
+
+<div class="row">
+<span class="label">Phone Type</span>
+<span class="value">{{phtype}}</span>
+</div>
+
+<div class="row">
+<span class="label">International Format</span>
+<span class="value">{{Informat}}</span>
+</div>
+
+<div class="row">
+<span class="label">National Format</span>
+<span class="value">{{Nformat}}</span>
+</div>
+
+<div class="row">
+<span class="label">URI</span>
+<span class="value">{{uri}}</span>
+</div>
+
+<a href="/" class="button">Check Another Number</a>
+
+</div>
+
+</body>
+</html>

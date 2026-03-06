@@ -23,7 +23,7 @@ def phone_validity_check():
     if not phone:
         return "/phone=???"
     result=get_data(phone)
-    return render_template("validity.html",
+    return render_template("validity2.html",
                            valid=result["valid"],
                            countrycode=result["countryCode"],
                            phtype=result["type"],
